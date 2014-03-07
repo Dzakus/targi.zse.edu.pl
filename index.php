@@ -27,7 +27,6 @@
                                 require_once "php/dbConn.php";
                                 $wynik = $pdo->query("SELECT * FROM szkoly WHERE id = ".$_GET["id"]."")->fetchAll();
                                 print_r($wynik);
-                                $wynik[0]["nazwa"]
                                 require_once "szkoly/".$entry;
                             echo "</div>";
                             break;
