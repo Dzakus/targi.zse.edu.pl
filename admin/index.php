@@ -40,7 +40,10 @@
                             echo '<td>'. $row['link'] . '</td>';
                             echo '<td>'. $row['mail'] . '</td>';
                             echo '<td>'. $row['html'] . '</td>';
-                            echo '<td><a class="btn btn-success" href="edit.php?id='.$row['id'].'">Edytuj</button></td>';
+                            echo '<td width = 150px>
+                            <a class="btn btn-success" href="edit.php?id='.$row['id'].'">Edytuj</a>
+                            <a class="btn btn-danger" href="delete.php?id='.$row['id'].'">Usuń</a>
+                            </td>';
                             echo '</tr>';
                    }
                   ?>
