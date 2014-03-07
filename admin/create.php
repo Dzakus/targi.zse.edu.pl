@@ -169,6 +169,6 @@ if(isset($_POST['nazwa']) && isset($_POST['adres']) && isset($_POST['telefon']) 
             $sql = "INSERT INTO szkoly (nazwa, adres, telefon, mail, html, link) values(?, ?, ?, ?, ?, ?)";
             $q = $pdo->prepare($sql);
             $q->execute(array($nazwa,$adres,$telefon,$mail, $plik["name"], $strona));
-            header("Location: index_fajny.php");
+            header("Location: index.php");
     }
 }
