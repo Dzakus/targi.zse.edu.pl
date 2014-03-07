@@ -15,38 +15,43 @@
 	        <div class="row">
 	            <h3>Edytuj szkołę</h3>
 	        </div>
-	        <?php require_once '../php/dbConn.php'; 
-            $szkola = $pdo->query("SELECT * FROM szkoly WHERE id = ".$_GET["id"])->fetchObject();?>
-	        <form class="form-horizontal" action="create.php" method="post" enctype="multipart/form-data">
+	        <?php
+            // if (!isset($_GET["id"])) {
+            //      die("Nie można bez GET");
+            // } 
+            require_once '../php/dbConn.php'; 
+            $szkola = $pdo->query("SELECT * FROM szkoly WHERE id = ".intval($_GET["id"]))->fetch();
+            ?>
+	        <form class="form-horizontal" action=<?php echo '"edit.php?id='.$_GET["id"].'"'; ?> method="post" enctype="multipart/form-data">
 
 					<div class="form-group">
 	                <label class="control-label">Nazwa</label>
-	                <input value= <?php echo $szkola["nazwa"]; ?> style="width: 50%;" class="form-control" name="nazwa" type="text"  placeholder="Nazwa">
+	                <input value= <?php echo '"'.$szkola["nazwa"].'"'; ?> style="width: 50%;" class="form-control" name="nazwa" type="text"  placeholder="Nazwa">
 	          	</div>
 
 	            <div class="form-group">
 	                <label class="control-label">Adres</label>
-	                <input style="width: 50%;" class="form-control" name="adres" type="text"  placeholder="Adres">
+	                <input value= <?php echo '"'.$szkola["adres"].'"'; ?>  style="width: 50%;" class="form-control" name="adres" type="text"  placeholder="Adres">
 	          	</div>
 	          	<div class="form-group">
 	                <label class="control-label">Telefon</label>
-	                <input style="width: 50%;" class="form-control" name="telefon" type="text"  placeholder="Telefon">
+	                <input value= <?php echo '"'.$szkola["telefon"].'"'; ?>  style="width: 50%;" class="form-control" name="telefon" type="text"  placeholder="Telefon">
 	          	</div>
 	          	<div class="form-group">
 	                <label class="control-label">Adres E-mail</label>
-	                <input style="width: 50%;" class="form-control" name="mail" type="text"  placeholder="E-mail">
+	                <input value= <?php echo '"'.$szkola["mail"].'"'; ?>  style="width: 50%;" class="form-control" name="mail" type="text"  placeholder="E-mail">
 	          	</div>
 	          	<div class="form-group">
 	                <label class="control-label">Strona internetowa</label>
-	                <input style="width: 50%;" class="form-control" name="strona" type="text"  placeholder="Strona">
+	                <input value= <?php echo '"'.$szkola["link"].'"'; ?>  style="width: 50%;" class="form-control" name="strona" type="text"  placeholder="Strona">
 	          	</div>
 	          	<div class="form-group">
 	                <label class="control-label">Plik html</label>
 	                <input style="width: 50%;" name="file" type="file">
 	          	</div>
 
-	          	<button type="submit" disabled="disabled" class="btn btn-success">Create</button>
-	          	<a class="btn" href="index_fajny.php">Back</a>
+	          	<button type="submit" disabled="disabled" class="btn btn-success">Edytuj</button>
+	          	<a class="btn" href="index.php">Back</a>
 	        </form>
 	    </div>
                  
@@ -64,7 +69,7 @@
 
         // The submit buttons selector
         // These buttons will be disabled when the form input are invalid
-        submitButtons: $('button'),
+        submitButtons: $('button.btn.btn-success'),
 
         // Custom submit handler
         // The handler has two arguments
@@ -141,34 +146,44 @@
 
 <?php
 if(isset($_POST['nazwa']) && isset($_POST['adres']) && isset($_POST['telefon']) && isset($_POST['strona']) && isset($_POST['mail'])) {
-	print_r($_POST);
-	print_r($_FILES);
 	$nazwa=$_POST['nazwa'];
 	$adres=$_POST['adres'];
 	$telefon=$_POST['telefon'];
 	$strona=$_POST['strona'];
 	$mail=$_POST['mail'];
-	$plik = $_FILES["file"];
-    if ($plik["error"] > 0)
-    {
-        echo "Error: " . $plik["error"] . "<br>";
-    }
-	else
-	{
-        echo "<br>Upload: " . $plik["name"] . "<br>";
-        echo "Type: " . $plik["type"] . "<br>";
-        echo "Size: " . ($plik["size"] / 1024) . " kB<br>";
-        echo "Stored in: " . $plik["tmp_name"];
-		if(!is_dir("../szkoly/"))
-		{
-			mkdir("../szkoly", 0777);
-		}
-		move_uploaded_file($plik['tmp_name'],'../szkoly/'.$plik['name']);
-		
+    if ($_FILES["file"]["error"]===4) {
+        echo "tag";
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "INSERT INTO szkoly (nazwa, adres, telefon, mail, html, link) values(?, ?, ?, ?, ?, ?)";
+        $sql = "UPDATE `szkoly` SET `nazwa`=?,`adres`=?,`telefon`=?,`mail`=?,`link`=? WHERE `id`=?";
+        $q = $pdo->prepare($sql);
+        $q->execute(array($nazwa,$adres,$telefon,$mail, $strona, $_GET["id"]));
+        //header("Location: index.php");
+    }else{
+        print_r($_FILES);
+        $plik = $_FILES["file"];
+        if ($plik["error"] > 0)
+        {
+            echo "Error: " . $plik["error"] . "<br>";
+        }
+        else
+        {
+            echo "<br>Upload: " . $plik["name"] . "<br>";
+            echo "Type: " . $plik["type"] . "<br>";
+            echo "Size: " . ($plik["size"] / 1024) . " kB<br>";
+            echo "Stored in: " . $plik["tmp_name"];
+            if(!is_dir("../szkoly/"))
+            {
+                mkdir("../szkoly", 0777);
+            }
+            move_uploaded_file($plik['tmp_name'],'../szkoly/'.$plik['name']);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = "UPDATE `szkoly` SET `nazwa`=?,`adres`=?,`telefon`=?,`mail`=?,`html`=?,`link`=? WHERE `id`=?";
+            //$sql = "UPDATE szkoly SET nazwa=?,adres=?, telefon=?, mail=?, html=?, link=? WHERE id=?";
             $q = $pdo->prepare($sql);
-            $q->execute(array($nazwa,$adres,$telefon,$mail, $plik["name"], $strona));
-            header("Location: index_fajny.php");
+            $q->execute(array($nazwa,$adres,$telefon,$mail, $plik["name"], $strona, $_GET["id"]));
+        
+            //header("Location: index.php");
+        }
     }
+	
 }
