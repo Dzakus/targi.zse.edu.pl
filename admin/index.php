@@ -14,11 +14,7 @@
             </div>
             <div class="row">
             <p>
-<<<<<<< HEAD
-                <a href="create.php" class="btn btn-success">Create</a>
-=======
                 <a href="create.php" class="btn btn-success">Stwórz</a>
->>>>>>> 99a87b5f4fd3740c8d945f6518df610a8985d310
             </p>
                 <table class="table table-striped table-bordered">
                   <thead>
@@ -44,11 +40,7 @@
                             echo '<td>'. $row['link'] . '</td>';
                             echo '<td>'. $row['mail'] . '</td>';
                             echo '<td>'. $row['html'] . '</td>';
-<<<<<<< HEAD
-                            echo '<td><button class="btn btn-success" href="edit.php?id='.$row['id'].'">Edytuj</button></td>';
-=======
                             echo '<td><a class="btn btn-success" href="edit.php?id='.$row['id'].'">Edytuj</button></td>';
->>>>>>> 99a87b5f4fd3740c8d945f6518df610a8985d310
                             echo '</tr>';
                    }
                   ?>
