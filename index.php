@@ -14,7 +14,7 @@
 			require_once 'html/home.html';
 			break;
 		}
-		
+		//cienki zjebał stronkie
 		case 1:
 		{
             if(!isset($_GET["link"])){
