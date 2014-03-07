@@ -1,5 +1,5 @@
 ﻿<?php
-	require_once 'html/top.html';
+	require_once 'htsml/top.html';
 	require_once 'php/menu.php';
 	
 	if(!isset($_GET["page"]))
