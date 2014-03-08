@@ -42,7 +42,7 @@
       }
 .ramka{
     padding: 10px;
-    border: solid 2px #5a5;
+    border: solid 1px #dbdbdb;
     border-radius: 5px;
 }
 	
@@ -51,54 +51,3 @@
 			text-align:right;
 			margin-right:20px;
 		}
-		
-		
-/* CUSTOMIZE THE CAROUSEL
--------------------------------------------------- */
-
-/* Carousel base class */
-.carousel {
-  margin-bottom: 60px;
-}
-/* Since positioning the image, we need to help out the caption */
-.carousel-caption {
-  z-index: 10;
-}
-
-/* Declare heights because of positioning of img element */
-.carousel .item {
-  height: 200px;
-  background-color:#555;
-}
-.carousel img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 200px;
-  width:100%;
-}
-
-
-
-/* MARKETING CONTENT
--------------------------------------------------- */
-
-/* Pad the edges of the mobile views a bit */
-.marketing {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-/* Center align the text within the three columns below the carousel */
-.marketing .col-lg-4 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-.marketing h2 {
-  font-weight: normal;
-}
-.marketing .col-lg-4 p {
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
