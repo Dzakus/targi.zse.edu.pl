@@ -1,4 +1,5 @@
 <?php
+ob_start();
 class PHPCount
 {
    /*
@@ -28,7 +29,7 @@ class PHPCount
 
         try
         {
-            require_once 'dbConn.php';
+            require 'dbConn.php';
             // TODO: Set the database login credentials.
             self::$DB = $pdo;
         }
