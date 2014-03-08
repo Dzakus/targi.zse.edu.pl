@@ -64,6 +64,7 @@
             break;
         }
 	}
+	require_once 'html/powiadomienie.html';
 	require_once 'html/footer.html'
 	?>
 	<div class="strzalka" style="display:none; width: 64px; height: 64px; position: fixed; bottom: 0; left: 0;">
