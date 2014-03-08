@@ -16,22 +16,27 @@
 		}
 		case 1:
 		{
-			$id=intval($_GET["id"]);
             if(!isset($_GET["link"])){
 				require_once 'php/wybor.php';
             }else{
                 if ($handle = opendir('szkoly/')) {
                     while (false !== ($entry = readdir($handle))) {
                         if(sha1($entry)===$_GET["link"]){
+                        	$id=intval($_GET["id"]);
                             echo '<div class="ramka span9">';
+								require_once 'php/phpcount.php';
                                 require_once "php/dbConn.php";
+                                
                                 $wynik = $pdo->query("SELECT * FROM szkoly WHERE id = ".$id."")->fetchAll();
+                                
 								echo '<h1>'. $wynik[0]["nazwa"].'</h3>';
 								echo '<h3>'. $wynik[0]["adres"].'</h3>';
 								echo '<h3>Telefon: '. $wynik[0]["telefon"].'</h3>';
 								echo '<h3>Strona internetowa: <a href="'. $wynik[0]["link"].'">'. $wynik[0]["link"].'</a></h3>';
 								echo '<h3>E-mail: <a href="mailto:'.$wynik[0]["mail"].'">'.$wynik[0]["mail"].'</a></h3>';
+								echo '<h3>Ilość odwiedzin: '.$wynik[0]["views"].'</h3>';
                                 require_once "szkoly/".$entry;
+                                PHPCount::AddHit($id);
                             echo "</div>";
                             break;
                         }
