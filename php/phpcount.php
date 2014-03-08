@@ -56,11 +56,11 @@ class PHPCount
         }
 
         self::InitDB();
-        if(self::UniqueHit())
+        if(self::UniqueHit($sqlID))
         {
             self::CountHit($sqlID);
-            self::createCookie('hit', sha1("huj Ci w dupe"), time()+self::HIT_OLD_AFTER_SECONDS);
-            setcookie('hit', sha1("huj Ci w dupe"), time()+self::HIT_OLD_AFTER_SECONDS);
+            self::createCookie('hit'.$sqlID, $sqlID, time()+self::HIT_OLD_AFTER_SECONDS);
+            //setcookie('hit', sha1("huj Ci w dupe"), time()+self::HIT_OLD_AFTER_SECONDS);
         }
 
         return true;
@@ -69,9 +69,9 @@ class PHPCount
     private static function createCookie($name, $val, $expire)
     {
         echo '
-        <script src="/js/jquery.min.js"></script>
-        <script src="/js/jquery.cookie.js"></script>
-        <script>$.cookie('.$name.', '.$val.', '.$expire.');</script>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.cookie.js"></script>
+        <script>$.cookie("'.$name.'", "'.$val.'", { expires: '.$expire.' } ); </script>
         ';
     }
 
@@ -135,9 +135,9 @@ class PHPCount
         return false;
     }
 
-    private static function UniqueHit()
+    private static function UniqueHit($sqlID)
     {
-        if(isset($_COOKIE["hit"])){
+        if(isset($_COOKIE["hit".$sqlID])){
             return false;
         }else{
             return true;

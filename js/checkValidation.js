@@ -46,8 +46,8 @@ $(document).ready(function() {
                 message: "Kiepska numer telefonu",
                 validators: {
                     regexp:{
-                        regexp: /\d{3}-\d{3}-\d{3}/,
-                        message: "Ten numer nie pasuje. Powinien wyglądać tak 000-000-000"
+                        regexp: /(\(\d{2}\) *\d{3}-\d{2}-\d{2})|(\d{3}-\d{3}-\d{3})/,
+                        message: "Ten numer nie pasuje. Powinien wyglądać tak 000-000-000 albo (00)000-00-00"
                     },
                     notEmpty:{
                     	message: "Puste pole"
