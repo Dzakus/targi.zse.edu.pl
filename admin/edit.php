@@ -157,7 +157,7 @@ if(isset($_POST['nazwa']) && isset($_POST['adres']) && isset($_POST['telefon']) 
         $sql = "UPDATE `szkoly` SET `nazwa`=?,`adres`=?,`telefon`=?,`mail`=?,`link`=? WHERE `id`=?";
         $q = $pdo->prepare($sql);
         $q->execute(array($nazwa,$adres,$telefon,$mail, $strona, $_GET["id"]));
-        //header("Location: index.php");
+        header("Location: index.php");
     }else{
         print_r($_FILES);
         $plik = $_FILES["file"];
@@ -182,7 +182,7 @@ if(isset($_POST['nazwa']) && isset($_POST['adres']) && isset($_POST['telefon']) 
             $q = $pdo->prepare($sql);
             $q->execute(array($nazwa,$adres,$telefon,$mail, $plik["name"], $strona, $_GET["id"]));
         
-            //header("Location: index.php");
+            header("Location: index.php");
         }
     }
 	
