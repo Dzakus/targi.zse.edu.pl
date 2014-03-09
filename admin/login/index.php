@@ -66,7 +66,7 @@ require_once 'login.php';
 if (isset($_POST["mail"]) && isset($_POST["pass"])) {
 	if(Login::CheckExistance($_POST["mail"], $_POST["pass"])){
 		Login::_Login();
-		header("Location: ".$_GET["req"]);
+		header("Location: ".$_GET["req"]."?m=".sha1($_POST["mail"]));
 	}
 }
 

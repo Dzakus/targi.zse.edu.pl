@@ -10,8 +10,18 @@
 </head>
 <?php 
 require_once 'login/login.php'; 
-if (!Login::CheckLogged()) {
+if (!Login::CheckLogged() || !isset($_GET["m"])) {
   header("Location: login/index.php?req=".$_SERVER["SCRIPT_NAME"]);
+}else{
+    require("../php/dbConn.php");
+    $mail = $_GET["m"];
+    $sa = $pdo->query('SELECT sa FROM admins WHERE SHA1(mail) = "'.$mail.'"')->fetch()["sa"];
+    if ($sa==0) {
+        $uid = $pdo->query('SELECT id FROM szkoly WHERE SHA1(mail) = "'.$mail.'"')->fetch()["id"];
+        if (!($uid == $_GET["id"])) {
+            header("Location: login/index.php?req=".$_SERVER["SCRIPT_NAME"]);
+        }
+    }
 }
 ?>
  <body>

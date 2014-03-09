@@ -78,6 +78,17 @@
 
 <?php
 require_once "../php/dbConn.php";
+require_once 'login/login.php'; 
+if (!Login::CheckLogged() || !isset($_GET["m"])) {
+  header("Location: login/index.php?req=".$_SERVER["SCRIPT_NAME"]);
+}else{
+    $mail = $_GET["m"];
+    $sa = $pdo->query('SELECT sa FROM admins WHERE SHA1(mail) = "'.$mail.'"')->fetch()["sa"];
+    if ($sa==0) {
+        header("Location: login/index.php?req=".$_SERVER["SCRIPT_NAME"]);
+    }
+}
+
 if(isset($_POST['mail']) && isset($_POST['pass'])) {
 	
 	$mail=strip_tags(htmlspecialchars(mysql_real_escape_string($_POST['mail'])));

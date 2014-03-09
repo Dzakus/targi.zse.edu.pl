@@ -10,8 +10,12 @@
  
 <?php 
 require_once 'login/login.php'; 
-if (!Login::CheckLogged()) {
+$mail = null;
+if (!Login::CheckLogged() || !isset($_GET["m"])) {
   header("Location: login/index.php?req=".$_SERVER["SCRIPT_NAME"]);
+}else{
+  $mail = $_GET["m"];
+  echo $mail;
 }
 ?>
 
@@ -23,12 +27,19 @@ if (!Login::CheckLogged()) {
             </div>
             <div class="row">
             <p>
-                <a href="create.php" class="btn btn-success">Dodaj szkołe</a>
-                <a href="admin.php" class="btn btn-success">Dodaj admina</a>
+            <?php
+             require("../php/dbConn.php");
+             $sa = $pdo->query('SELECT sa FROM admins WHERE SHA1(mail) = "'.$mail.'"')->fetch()["sa"];
+             if ($sa==1) {
+               echo '<a href="create.php?m='.$mail.'" class="btn btn-success">Dodaj szkołe</a>
+                <a href="admin.php?m='.$mail.'" class="btn btn-success">Dodaj admina</a>';
+             }
+            ?>
             </p>
                 <table class="table table-striped table-bordered">
                   <thead>
                     <tr>
+                    LO1 ma hasło rozdzien
                       <th>Nazwa szkoly</th>
                       <th>Adres szkoly</th>
                       <th>Telefon</th>
@@ -40,8 +51,12 @@ if (!Login::CheckLogged()) {
                   </thead>
                   <tbody>
                   <?php
-                   require_once("../php/dbConn.php");
-                   $sql = 'SELECT * FROM szkoly ORDER BY id DESC';
+                   $sql = null;
+                  if($sa == 0){
+                    $sql = 'SELECT * FROM szkoly WHERE SHA1(mail) = "'.$mail.'" ORDER BY id DESC';
+                  }else{
+                    $sql = 'SELECT * FROM szkoly ORDER BY id DESC';
+                  }
                    foreach ($pdo->query($sql) as $row) {
                             echo '<tr>';
                             echo '<td>'. $row['nazwa'] . '</td>';
@@ -51,8 +66,8 @@ if (!Login::CheckLogged()) {
                             echo '<td>'. $row['mail'] . '</td>';
                             echo '<td>'. $row['html'] . '</td>';
                             echo '<td width = 150px>
-                            <a class="btn btn-success" href="edit.php?id='.$row['id'].'">Edytuj</a>
-                            <a class="btn btn-danger" href="delete.php?id='.$row['id'].'">Usuń</a>
+                            <a class="btn btn-success" href="edit.php?id='.$row['id'].'&m='.$mail.'">Edytuj</a>
+                            <a class="btn btn-danger" href="delete.php?id='.$row['id'].'&m='.$mail.'">Usuń</a>
                             </td>';
                             echo '</tr>';
                    }

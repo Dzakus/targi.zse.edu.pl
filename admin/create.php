@@ -10,8 +10,15 @@
 </head>
 <?php 
 require_once 'login/login.php'; 
-if (!Login::CheckLogged()) {
+if (!Login::CheckLogged() || !isset($_GET["m"])) {
   header("Location: login/index.php?req=".$_SERVER["SCRIPT_NAME"]);
+}else{
+	require("../php/dbConn.php");
+	$mail = $_GET["m"];
+	$sa = $pdo->query('SELECT sa FROM admins WHERE SHA1(mail) = "'.$mail.'"')->fetch()["sa"];
+	if ($sa==0) {
+	    header("Location: login/index.php?req=".$_SERVER["SCRIPT_NAME"]);
+	}
 }
 ?>
  <body>
@@ -90,9 +97,23 @@ if(isset($_POST['nazwa']) && isset($_POST['adres']) && isset($_POST['telefon']) 
 		move_uploaded_file($plik['tmp_name'],'../szkoly/'.$plik['name']);
 		
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "INSERT INTO szkoly (nazwa, adres, telefon, mail, html, link) values(?, ?, ?, ?, ?, ?)";
-            $q = $pdo->prepare($sql);
-            $q->execute(array($nazwa,$adres,$telefon,$mail, $plik["name"], $strona));
-            header("Location: index.php");
+        $sql = "INSERT INTO szkoly (nazwa, adres, telefon, mail, html, link) values(?, ?, ?, ?, ?, ?)";
+        $q = $pdo->prepare($sql);
+        $q->execute(array($nazwa,$adres,$telefon,$mail, $plik["name"], $strona));
+        $pass = randomString(6);
+        $sql = "INSERT INTO admins (mail, pass) values(?, ?)";
+	    $q = $pdo->prepare($sql);
+	    echo "Podaje hasło tylko dla celów tworzenia stron szkół, lepiej je zapisać: ".$pass;
+	    $q->execute(array($mail,sha1($pass)));
+        //header("Location: index.php");
     }
+}
+
+function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, strlen($characters) - 1)];
+    }
+    return $randomString;
 }
