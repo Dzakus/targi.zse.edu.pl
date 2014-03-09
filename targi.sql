@@ -47,6 +47,11 @@ INSERT INTO `admins` (`id`, `mail`, `pass`) VALUES
 -- Struktura tabeli dla tabeli `szkoly`
 --
 
+<<<<<<< HEAD
+=======
+DROP TABLE IF EXISTS `szkoly`;
+
+>>>>>>> de9a966ac0f3f5b5ab8f29475d040dc8d3f47935
 CREATE TABLE IF NOT EXISTS `szkoly` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nazwa` varchar(100) COLLATE utf8_polish_ci DEFAULT NULL,
