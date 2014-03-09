@@ -34,14 +34,15 @@ CREATE TABLE IF NOT EXISTS `admins` (
   `mail` varchar(50) COLLATE utf8_polish_ci NOT NULL,
   `pass` varchar(100) COLLATE utf8_polish_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=3 ;
 
 --
 -- Zrzut danych tabeli `admins`
 --
 
 INSERT INTO `admins` (`id`, `mail`, `pass`) VALUES
-(1, 'kprosciewicz@gmail.com', 'ab239c5a26a103f02214f1ae199f6dad0108e000');
+(1, 'kprosciewicz@gmail.com', '1c9cc7e88f0661de83382c35e8305a7177fa6219'),
+(2, 'adrian.cieniuch@gmail.com', 'e42b31d4bb2a1c6edfbb65cd6e6c60f8065493d8');
 
 -- --------------------------------------------------------
 
@@ -50,6 +51,7 @@ INSERT INTO `admins` (`id`, `mail`, `pass`) VALUES
 --
 
 DROP TABLE IF EXISTS `szkoly`;
+
 CREATE TABLE IF NOT EXISTS `szkoly` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nazwa` varchar(100) COLLATE utf8_polish_ci DEFAULT NULL,
@@ -60,14 +62,14 @@ CREATE TABLE IF NOT EXISTS `szkoly` (
   `link` varchar(255) COLLATE utf8_polish_ci NOT NULL,
   `views` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=2 ;
 
 --
 -- Zrzut danych tabeli `szkoly`
 --
 
 INSERT INTO `szkoly` (`id`, `nazwa`, `adres`, `telefon`, `mail`, `html`, `link`, `views`) VALUES
-(1, 'I LICEUM OGÓLNOKSZTAŁCĄCE im. Walentego Roździeńskiego w Zespole Szkół Ogólnokształcących Nr 1 ', 'Staszica 62 41-200 Sosnowiec', '(32) 266-18-34', 'lo1@sosnowiec.edu.pl', '1lo.htm', 'http://www.rozdzienski.pl', 1);
+(1, 'I LICEUM OGÓLNOKSZTAŁCĄCE im. Walentego Roździeńskiego w Zespole Szkół Ogólnokształcących Nr 1 ', 'Staszica 62 41-200 Sosnowiec', '(32) 266-18-34', 'lo1@sosnowiec.edu.pl', '1lo.htm', 'http://www.rozdzienski.pl', 3);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
