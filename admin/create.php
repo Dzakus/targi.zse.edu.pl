@@ -8,6 +8,12 @@
     
     
 </head>
+<?php 
+require_once 'login/login.php'; 
+if (!Login::CheckLogged()) {
+  header("Location: login/index.php?req=".$_SERVER["SCRIPT_NAME"]);
+}
+?>
  <body>
     <div class="container">
      
@@ -45,7 +51,7 @@
 	          	</div>
 
 	          	<button type="submit" disabled="disabled" class="btn btn-success">Create</button>
-	          	<a class="btn" href="index_fajny.php">Back</a>
+	          	<a class="btn" href="index.php">Back</a>
 	        </form>
 	    </div>
                  

@@ -8,6 +8,12 @@
     
     
 </head>
+<?php 
+require_once 'login/login.php'; 
+if (!Login::CheckLogged()) {
+  header("Location: login/index.php?req=".$_SERVER["SCRIPT_NAME"]);
+}
+?>
  <body>
     <div class="container">
      

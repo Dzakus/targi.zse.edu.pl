@@ -1,3 +1,4 @@
+<?php ob_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,14 +8,23 @@
     <script src="../bootstrap/js/bootstrap.min.js"></script>
 </head>
  
+<?php 
+require_once 'login/login.php'; 
+if (!Login::CheckLogged()) {
+  header("Location: login/index.php?req=".$_SERVER["SCRIPT_NAME"]);
+}
+?>
+
 <body>
     <div class="container">
             <div class="row">
                 <h3>CRUD</h3>
+                <a href="login/logout.php" class="btn btn-danger" style="top: 10px;right: 10px;position: absolute;">Wyloguj się</a>
             </div>
             <div class="row">
             <p>
-                <a href="create.php" class="btn btn-success">Stwórz</a>
+                <a href="create.php" class="btn btn-success">Dodaj szkołe</a>
+                <a href="admin.php" class="btn btn-success">Dodaj admina</a>
             </p>
                 <table class="table table-striped table-bordered">
                   <thead>
@@ -25,7 +35,7 @@
                       <th>Strona szkoly</th>
                       <th>E-mail szkoly</th>
                       <th>Plik (html)</th>
-                      <th>Action</th>                      
+                      <th>Akcja</th>                      
                     </tr>
                   </thead>
                   <tbody>

@@ -59,21 +59,12 @@ class PHPCount
         if(self::UniqueHit($sqlID))
         {
             self::CountHit($sqlID);
-            self::createCookie('hit'.$sqlID, $sqlID, time()+self::HIT_OLD_AFTER_SECONDS);
-            //setcookie('hit', sha1("huj Ci w dupe"), time()+self::HIT_OLD_AFTER_SECONDS);
+            setcookie('hit'.$sqlID, sha1("huj Ci w dupe"), time()+self::HIT_OLD_AFTER_SECONDS);
         }
 
         return true;
     }
     
-    private static function createCookie($name, $val, $expire)
-    {
-        echo '
-        <script src="js/jquery.min.js"></script>
-        <script src="js/jquery.cookie.js"></script>
-        <script>$.cookie("'.$name.'", "'.$val.'", { expires: '.$expire.' } ); </script>
-        ';
-    }
 
     /*
      * Returns (int) the amount of hits a page has

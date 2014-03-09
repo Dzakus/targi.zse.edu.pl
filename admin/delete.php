@@ -28,7 +28,12 @@
     <script src="../js/jquery.min.js"></script>
     <script src="../bootstrap/js/bootstrap.min.js"></script>
 </head>
- 
+ <?php 
+require_once 'login/login.php'; 
+if (!Login::CheckLogged()) {
+  header("Location: login/index.php?req=".$_SERVER["SCRIPT_NAME"]);
+}
+?>
 <body>
     <div class="container">
      
