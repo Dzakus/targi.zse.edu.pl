@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Czas wygenerowania: 09 Mar 2014, 04:28
+-- Czas wygenerowania: 09 Mar 2014, 04:35
 -- Wersja serwera: 5.5.32
 -- Wersja PHP: 5.4.19
 
@@ -28,6 +28,7 @@ USE `targi`;
 -- Struktura tabeli dla tabeli `admins`
 --
 
+DROP TABLE IF EXISTS `admins`;
 CREATE TABLE IF NOT EXISTS `admins` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `mail` varchar(50) COLLATE utf8_polish_ci NOT NULL,
@@ -48,6 +49,7 @@ INSERT INTO `admins` (`id`, `mail`, `pass`) VALUES
 -- Struktura tabeli dla tabeli `szkoly`
 --
 
+DROP TABLE IF EXISTS `szkoly`;
 CREATE TABLE IF NOT EXISTS `szkoly` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nazwa` varchar(100) COLLATE utf8_polish_ci DEFAULT NULL,
@@ -65,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `szkoly` (
 --
 
 INSERT INTO `szkoly` (`id`, `nazwa`, `adres`, `telefon`, `mail`, `html`, `link`, `views`) VALUES
-(16, 'I LICEUM OGÓLNOKSZTAŁCĄCE im. Walentego Roździeńskiego w Zespole Szkół Ogólnokształcących Nr 1 ', 'Staszica 62 41-200 Sosnowiec', '(32) 142-12-12', 'lo1@sosnowiec.edu.pl', '1lo.htm', 'http://www.zse.edu.pl', 20);
+(1, 'I LICEUM OGÓLNOKSZTAŁCĄCE im. Walentego Roździeńskiego w Zespole Szkół Ogólnokształcących Nr 1 ', 'Staszica 62 41-200 Sosnowiec', '(32) 266-18-34', 'lo1@sosnowiec.edu.pl', '1lo.htm', 'http://www.rozdzienski.pl', 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
