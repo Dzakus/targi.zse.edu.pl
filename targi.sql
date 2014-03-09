@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Czas wygenerowania: 09 Mar 2014, 04:35
+-- Czas wygenerowania: 09 Mar 2014, 04:46
 -- Wersja serwera: 5.5.32
 -- Wersja PHP: 5.4.19
 
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `admins` (
 --
 
 INSERT INTO `admins` (`id`, `mail`, `pass`) VALUES
-(1, 'kprosciewicz@gmail.com', '1c9cc7e88f0661de83382c35e8305a7177fa6219');
+(1, 'kprosciewicz@gmail.com', 'ab239c5a26a103f02214f1ae199f6dad0108e000');
 
 -- --------------------------------------------------------
 
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `szkoly` (
 --
 
 INSERT INTO `szkoly` (`id`, `nazwa`, `adres`, `telefon`, `mail`, `html`, `link`, `views`) VALUES
-(1, 'I LICEUM OGÓLNOKSZTAŁCĄCE im. Walentego Roździeńskiego w Zespole Szkół Ogólnokształcących Nr 1 ', 'Staszica 62 41-200 Sosnowiec', '(32) 266-18-34', 'lo1@sosnowiec.edu.pl', '1lo.htm', 'http://www.rozdzienski.pl', 0);
+(1, 'I LICEUM OGÓLNOKSZTAŁCĄCE im. Walentego Roździeńskiego w Zespole Szkół Ogólnokształcących Nr 1 ', 'Staszica 62 41-200 Sosnowiec', '(32) 266-18-34', 'lo1@sosnowiec.edu.pl', '1lo.htm', 'http://www.rozdzienski.pl', 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
