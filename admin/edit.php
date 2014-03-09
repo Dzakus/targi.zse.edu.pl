@@ -65,11 +65,11 @@
 
 <?php
 if(isset($_POST['nazwa']) && isset($_POST['adres']) && isset($_POST['telefon']) && isset($_POST['strona']) && isset($_POST['mail'])) {
-	$nazwa=$_POST['nazwa'];
-	$adres=$_POST['adres'];
-	$telefon=$_POST['telefon'];
-	$strona=$_POST['strona'];
-	$mail=$_POST['mail'];
+	$nazwa=strip_tags(htmlspecialchars(mysql_real_escape_string($_POST['nazwa'])));
+	$adres=strip_tags(htmlspecialchars(mysql_real_escape_string($_POST['adres'])));
+	$telefon=strip_tags(htmlspecialchars(mysql_real_escape_string($_POST['telefon'])));
+	$strona=strip_tags(htmlspecialchars(mysql_real_escape_string($_POST['strona'])));
+	$mail=strip_tags(htmlspecialchars(mysql_real_escape_string($_POST['mail'])));
     if ($_FILES["file"]["error"]===4) {
         echo "tag";
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
