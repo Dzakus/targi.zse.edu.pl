@@ -83,11 +83,11 @@ if (!Login::CheckLogged() || !isset($_GET["m"])) {
 
 <?php
 if(isset($_POST['nazwa']) && isset($_POST['adres']) && isset($_POST['telefon']) && isset($_POST['strona']) && isset($_POST['mail'])) {
-	$nazwa=strip_tags(htmlspecialchars(mysql_real_escape_string($_POST['nazwa'])));
-	$adres=strip_tags(htmlspecialchars(mysql_real_escape_string($_POST['adres'])));
-	$telefon=strip_tags(htmlspecialchars(mysql_real_escape_string($_POST['telefon'])));
-	$strona=strip_tags(htmlspecialchars(mysql_real_escape_string($_POST['strona'])));
-	$mail=strip_tags(htmlspecialchars(mysql_real_escape_string($_POST['mail'])));
+	$nazwa=htmlspecialchars($_POST['nazwa']);
+	$adres=htmlspecialchars($_POST['adres']);
+	$telefon=htmlspecialchars($_POST['telefon']);
+	$strona=htmlspecialchars($_POST['strona']);
+	$mail=htmlspecialchars($_POST['mail']);
     if ($_FILES["file"]["error"]===4) {
         echo "tag";
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

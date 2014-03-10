@@ -13,6 +13,7 @@
      
 	    <div class="span10 offset1">
 	        <div class="row">
+			
 	            <h3>Dodaj admina</h3>
 	        </div>
 	 
@@ -93,10 +94,12 @@ if (!Login::CheckLogged() || !isset($_GET["m"])) {
 if(isset($_POST['mail']) && isset($_POST['pass'])) {
 	
 	$mail=strip_tags(htmlspecialchars(mysql_real_escape_string($_POST['mail'])));
-	$pass=strip_tags(htmlspecialchars(mysql_real_escape_string($_POST['pass'])));
+	$pass=strip_tags(htmlspecialchars($_POST['pass']));
 	$sql = "INSERT INTO admins (mail, pass, sa) values(?, ?, ?)";
     $q = $pdo->prepare($sql);
-    $q->execute(array($_POST["mail"],sha1($pass), 1));
+    $q->execute(array($_POST["mail"],SHA1($pass), 1));
     //header("Location: index.php?m=".$mails);
     
 }
+
+echo $pass;
