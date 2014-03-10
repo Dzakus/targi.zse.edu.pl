@@ -15,7 +15,7 @@
         $sql = "DELETE FROM szkoly WHERE id = ?";
         $q = $pdo->prepare($sql);
         $q->execute(array($id));
-        header("Location: index.php");
+        header("Location: index.php?m=".$_GET["m"]);
          
     }
 ?>
@@ -52,7 +52,7 @@ if (!Login::CheckLogged() || !isset($_GET["m"])) {
                         <h3>Usuń szkołe</h3>
                     </div>
                      
-                    <form class="form-horizontal" action="delete.php" method="post">
+                    <form class="form-horizontal" action=<?php echo "delete.php?m=".$mail; ?> method="post">
                       <input type="hidden" name="id" value="<?php echo $id;?>"/>
                       <p class="alert alert-danger">Czy jesteś pewien?</p>
                       <div class="form-actions">

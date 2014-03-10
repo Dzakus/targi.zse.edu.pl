@@ -15,7 +15,6 @@ if (!Login::CheckLogged() || !isset($_GET["m"])) {
   header("Location: login/index.php?req=".$_SERVER["SCRIPT_NAME"]);
 }else{
   $mail = $_GET["m"];
-  echo $mail;
 }
 ?>
 

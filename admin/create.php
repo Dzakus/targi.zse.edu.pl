@@ -14,8 +14,8 @@ if (!Login::CheckLogged() || !isset($_GET["m"])) {
   header("Location: login/index.php?req=".$_SERVER["SCRIPT_NAME"]);
 }else{
 	require("../php/dbConn.php");
-	$mail = $_GET["m"];
-	$sa = $pdo->query('SELECT sa FROM admins WHERE SHA1(mail) = "'.$mail.'"')->fetch()["sa"];
+	$m = $_GET["m"];
+	$sa = $pdo->query('SELECT sa FROM admins WHERE SHA1(mail) = "'.$m.'"')->fetch()["sa"];
 	if ($sa==0) {
 	    header("Location: login/index.php?req=".$_SERVER["SCRIPT_NAME"]);
 	}
@@ -29,7 +29,7 @@ if (!Login::CheckLogged() || !isset($_GET["m"])) {
 	            <h3>Stwórz szkołę</h3>
 	        </div>
 	 
-	        <form class="form-horizontal" action="create.php" method="post" enctype="multipart/form-data">
+	        <form class="form-horizontal" action=<?php echo "create.php?m=".$m; ?> method="post" enctype="multipart/form-data">
 
 					<div class="form-group">
 	                <label class="control-label">Nazwa</label>
@@ -100,12 +100,14 @@ if(isset($_POST['nazwa']) && isset($_POST['adres']) && isset($_POST['telefon']) 
         $sql = "INSERT INTO szkoly (nazwa, adres, telefon, mail, html, link) values(?, ?, ?, ?, ?, ?)";
         $q = $pdo->prepare($sql);
         $q->execute(array($nazwa,$adres,$telefon,$mail, $plik["name"], $strona));
-        $pass = randomString(6);
-        $sql = "INSERT INTO admins (mail, pass) values(?, ?)";
+        $pass = generateRandomString(6);
+        //die();
+        $sql = 'INSERT INTO admins (mail, pass) values(?, ?)';
 	    $q = $pdo->prepare($sql);
 	    echo "Podaje hasło tylko dla celów tworzenia stron szkół, lepiej je zapisać: ".$pass;
-	    $q->execute(array($mail,sha1($pass)));
-        //header("Location: index.php");
+	    $q->execute(array($mail,sha1($pass))) or die(mysql_error());
+        //die();
+        //header("Location: index.php?m=".$m);
     }
 }
 

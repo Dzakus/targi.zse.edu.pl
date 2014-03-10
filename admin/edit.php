@@ -38,7 +38,7 @@ if (!Login::CheckLogged() || !isset($_GET["m"])) {
             require_once '../php/dbConn.php'; 
             $szkola = $pdo->query("SELECT * FROM szkoly WHERE id = ".intval($_GET["id"]))->fetch();
             ?>
-	        <form class="form-horizontal" action=<?php echo '"edit.php?id='.$_GET["id"].'"'; ?> method="post" enctype="multipart/form-data">
+	        <form class="form-horizontal" action=<?php echo '"edit.php?id='.$_GET["id"].'&m='.$mail.'"'; ?> method="post" enctype="multipart/form-data">
 
 					<div class="form-group">
 	                <label class="control-label">Nazwa</label>
