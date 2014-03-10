@@ -15,7 +15,8 @@ if (!Login::CheckLogged() || !isset($_GET["m"])) {
 }else{
 	require("../php/dbConn.php");
 	$m = $_GET["m"];
-	$sa = $pdo->query('SELECT sa FROM admins WHERE SHA1(mail) = "'.$m.'"')->fetch()["sa"];
+	$sa = $pdo->query('SELECT sa FROM admins WHERE SHA1(mail) = "'.$m.'"')->fetch();
+	$sa = $sa["sa"];
 	if ($sa==0) {
 	    header("Location: login/index.php?req=".$_SERVER["SCRIPT_NAME"]);
 	}

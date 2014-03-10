@@ -16,7 +16,7 @@
 	            <h3>Dodaj admina</h3>
 	        </div>
 	 
-	        <form class="form-horizontal" action="admin.php" method="post">
+	        <form class="form-horizontal" action=<?php echo '"admin.php?m='.$_GET["m"].'"'; ?> method="post">
 
 				<div class="form-group">
 	                <label class="control-label">E-mail</label>
@@ -82,8 +82,9 @@ require_once 'login/login.php';
 if (!Login::CheckLogged() || !isset($_GET["m"])) {
   header("Location: login/index.php?req=".$_SERVER["SCRIPT_NAME"]);
 }else{
-    $mail = $_GET["m"];
-    $sa = $pdo->query('SELECT sa FROM admins WHERE SHA1(mail) = "'.$mail.'"')->fetch()["sa"];
+    $mails = $_GET["m"];
+    $sa = $pdo->query('SELECT sa FROM admins WHERE SHA1(mail) = "'.$mails.'"')->fetch();
+	$sa = $sa["sa"];
     if ($sa==0) {
         header("Location: login/index.php?req=".$_SERVER["SCRIPT_NAME"]);
     }
@@ -93,9 +94,9 @@ if(isset($_POST['mail']) && isset($_POST['pass'])) {
 	
 	$mail=strip_tags(htmlspecialchars(mysql_real_escape_string($_POST['mail'])));
 	$pass=strip_tags(htmlspecialchars(mysql_real_escape_string($_POST['pass'])));
-	$sql = "INSERT INTO admins (mail, pass) values(?, ?)";
+	$sql = "INSERT INTO admins (mail, pass, sa) values(?, ?, ?)";
     $q = $pdo->prepare($sql);
-    $q->execute(array($mail,sha1($pass)));
-    header("Location: index.php");
+    $q->execute(array($_POST["mail"],sha1($pass), 1));
+    //header("Location: index.php?m=".$mails);
     
 }

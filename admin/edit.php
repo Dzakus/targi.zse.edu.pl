@@ -15,9 +15,11 @@ if (!Login::CheckLogged() || !isset($_GET["m"])) {
 }else{
     require("../php/dbConn.php");
     $mail = $_GET["m"];
-    $sa = $pdo->query('SELECT sa FROM admins WHERE SHA1(mail) = "'.$mail.'"')->fetch()["sa"];
+    $sa = $pdo->query('SELECT sa FROM admins WHERE SHA1(mail) = "'.$mail.'"')->fetch();
+	$sa = $sa["sa"];
     if ($sa==0) {
-        $uid = $pdo->query('SELECT id FROM szkoly WHERE SHA1(mail) = "'.$mail.'"')->fetch()["id"];
+        $uid = $pdo->query('SELECT id FROM szkoly WHERE SHA1(mail) = "'.$mail.'"')->fetch();
+		$uid = $uid["id"];
         if (!($uid == $_GET["id"])) {
             header("Location: login/index.php?req=".$_SERVER["SCRIPT_NAME"]);
         }
@@ -67,7 +69,7 @@ if (!Login::CheckLogged() || !isset($_GET["m"])) {
 	          	</div>
 
 	          	<button type="submit" disabled="disabled" class="btn btn-success">Edytuj</button>
-	          	<a class="btn" href="index.php">Back</a>
+	          	<a class="btn" href=<?php echo '"index.php?m='.$_GET["m"].'"'; ?>>Back</a>
 	        </form>
 	    </div>
                  

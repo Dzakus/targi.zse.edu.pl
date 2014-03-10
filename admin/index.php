@@ -27,11 +27,13 @@ if (!Login::CheckLogged() || !isset($_GET["m"])) {
             <div class="row">
             <p>
             <?php
-             require("../php/dbConn.php");
-             $sa = $pdo->query('SELECT sa FROM admins WHERE SHA1(mail) = "'.$mail.'"')->fetch()["sa"];
-             if ($sa==1) {
+             require_once("../php/dbConn.php");
+             $sa = $pdo->query('SELECT sa FROM admins WHERE SHA1(mail) = "'.$mail.'"')->fetch();
+			 $sa = $sa["sa"];
+            if ($sa==1) {
                echo '<a href="create.php?m='.$mail.'" class="btn btn-success">Dodaj szkołe</a>
-                <a href="admin.php?m='.$mail.'" class="btn btn-success">Dodaj admina</a>';
+                <a href="admin.php?m='.$mail.'" class="btn btn-success">Dodaj admina</a>
+                <a href="changePass.php?m='.$mail.'" class="btn btn-success">Zmień haseło</a>';
              }
             ?>
             </p>
