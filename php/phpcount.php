@@ -59,7 +59,7 @@ class PHPCount
         if(self::UniqueHit($sqlID))
         {
             self::CountHit($sqlID);
-            setcookie('hit'.$sqlID, sha1("huj Ci w dupe"), time()+self::HIT_OLD_AFTER_SECONDS);
+            setcookie('hit'.$sqlID, sha1("Chyba Ty"), time()+self::HIT_OLD_AFTER_SECONDS);
         }
 
         return true;

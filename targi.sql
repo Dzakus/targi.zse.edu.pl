@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 09 Mar 2014, 15:54
+-- Generation Time: 10 Mar 2014, 13:01
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -26,20 +26,64 @@ SET time_zone = "+00:00";
 -- Struktura tabeli dla tabeli `admins`
 --
 
+DROP TABLE IF EXISTS `admins`;
 CREATE TABLE IF NOT EXISTS `admins` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `mail` varchar(50) COLLATE utf8_polish_ci NOT NULL,
   `pass` varchar(100) COLLATE utf8_polish_ci NOT NULL,
+  `sa` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=29 ;
 
 --
 -- Zrzut danych tabeli `admins`
 --
 
-INSERT INTO `admins` (`id`, `mail`, `pass`) VALUES
-(1, 'kprosciewicz@gmail.com', '1c9cc7e88f0661de83382c35e8305a7177fa6219'),
-(2, 'adrian.cieniuch@gmail.com', 'e42b31d4bb2a1c6edfbb65cd6e6c60f8065493d8');
+INSERT INTO `admins` (`id`, `mail`, `pass`, `sa`) VALUES
+(1, 'kprosciewicz@gmail.com', '1c9cc7e88f0661de83382c35e8305a7177fa6219', 1),
+(2, 'adrian.cieniuch@gmail.com', 'e42b31d4bb2a1c6edfbb65cd6e6c60f8065493d8', 1),
+(8, 'brak@adresu.pl', 'f96cc07c8ce9387e6e534200010d601112694f37', 0),
+(9, 'lo1@sosnowiec.edu.pl', '37d7d05bff5705ae0229db2e3631015ae4c29c52', 0),
+(10, 'loplater@wp.pl', 'e2e2b8bf2ad09a19c47fc5ccedc45502329f2a13', 0),
+(11, 'lo3@sosnowiec.edu.pl', '977a499a263e010b42be016383ff8210d7ec8e79', 0),
+(12, 'lo4@sosnowiec.edu.pl', 'b43edfa728e8cd9ccb0566b30e28a9122c4a3de8', 0),
+(13, 'lo4@sosnowiec.edu.pl', '6a4e7344c47252166f3e3f7af7ec145909146b38', 0),
+(14, 'lo5@sosnowiec.edu.pl', 'f1e6c14aee51dd54393d15ea0462c2a0f760e245', 0),
+(15, 'lo6@korczak.edu.pl', '4ec04331323d74b502d3e504580739e1e4c39538', 0),
+(16, 'lo7@sosnowiec.edu.pl', 'bddac247edb065d33c404fa5ad068ae2004e6554', 0),
+(17, 'zstl@sosnowiec.edu.pl', '3445cc575a5c6ecaac665e40c07dd978ca1a2366', 0),
+(18, 'zsz1@sosnowiec.edu.pl', 'f6b07306bc87b18222f156e61afe51ffa7e0e5b7', 0),
+(19, 'sekretariat@zse.edu.pl', 'f010ba96e6049ac4d19a76e88244281b8e63ec49', 0),
+(20, 'zsz9@sosnowiec.edu.pl', '21014ddf871ef66187ecf84bad9e860c1261cc36', 0),
+(21, 'zsz3@sosnowiec.edu.pl', '22e9421823380b135d9b0c9face594a040992aeb', 0),
+(22, 'rekrutacja@zsgh.com.pl', 'f03c985a942891b92f70bd26ef1d81d5b3e1e0bb', 0),
+(23, 'zsme@sosnowiec.edu.pl', '81d3457e6aa008dcd50dc793f3ee4f1f1e87fb5a', 0),
+(24, 'zstl2@sosnowiec.edu.pl', 'bd3d56354c865d09244293e6195590e3e8178cc6', 0),
+(25, 'zst@zst.sosnowiec.pl', '6e6d1d9d2a835eeba775833a3882c18ae938a2b0', 0),
+(26, 'sekretariat@zsu.edu.pl', '5476b2db0b6202a7e8431cc46f7892228b299f5a', 0),
+(27, 'loplater@wp.pl', '4f39cebc1685e40b6c079324a0d8ba3420d9ab5f', 0),
+(28, 'loplater@wp.pl', '6b47938ede66d669a31310e8d91a129a74ca0ab4', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `centra`
+--
+
+DROP TABLE IF EXISTS `centra`;
+CREATE TABLE IF NOT EXISTS `centra` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `centrum` varchar(255) COLLATE utf8_polish_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=4 ;
+
+--
+-- Zrzut danych tabeli `centra`
+--
+
+INSERT INTO `centra` (`id`, `centrum`) VALUES
+(0, 'Ogólne'),
+(1, 'Centrum Kształcenia Zawodowego i Ustawicznego w Sosnowcu, z siedzibą przy ul. Grota-Roweckiego 64');
 
 -- --------------------------------------------------------
 
@@ -47,29 +91,43 @@ INSERT INTO `admins` (`id`, `mail`, `pass`) VALUES
 -- Struktura tabeli dla tabeli `szkoly`
 --
 
-<<<<<<< HEAD
-=======
 DROP TABLE IF EXISTS `szkoly`;
-
->>>>>>> de9a966ac0f3f5b5ab8f29475d040dc8d3f47935
 CREATE TABLE IF NOT EXISTS `szkoly` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nazwa` varchar(100) COLLATE utf8_polish_ci DEFAULT NULL,
+  `nazwa` varchar(255) COLLATE utf8_polish_ci DEFAULT NULL,
   `adres` varchar(255) COLLATE utf8_polish_ci DEFAULT NULL,
   `telefon` varchar(15) COLLATE utf8_polish_ci NOT NULL,
   `mail` varchar(255) COLLATE utf8_polish_ci NOT NULL,
   `html` varchar(50) COLLATE utf8_polish_ci NOT NULL,
   `link` varchar(255) COLLATE utf8_polish_ci NOT NULL,
   `views` int(11) NOT NULL,
+  `id_centrum` int(11) DEFAULT '0',
+  `prez` varchar(50) COLLATE utf8_polish_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=22 ;
 
 --
 -- Zrzut danych tabeli `szkoly`
 --
 
-INSERT INTO `szkoly` (`id`, `nazwa`, `adres`, `telefon`, `mail`, `html`, `link`, `views`) VALUES
-(1, 'I LICEUM OGÓLNOKSZTAŁCĄCE im. Walentego Roździeńskiego w Zespole Szkół Ogólnokształcących Nr 1 ', 'Staszica 62 41-200 Sosnowiec', '(32) 266-18-34', 'lo1@sosnowiec.edu.pl', '1lo.htm', 'http://www.rozdzienski.pl', 3);
+INSERT INTO `szkoly` (`id`, `nazwa`, `adres`, `telefon`, `mail`, `html`, `link`, `views`, `id_centrum`, `prez`) VALUES
+(1, 'Doradca zawodowy', 'Sucha 21 Sosnowiec 41-200', '(32) 266-14-71', 'brak@adresu.pl', 'koordynator_list.htm', 'http://www.poradnia.sosnowiec.pl/', 2, 0, ''),
+(2, 'I LICEUM OGÓLNOKSZTAŁCĄCE im. Walentego Roździeńskiego w Zespole Szkół Ogólnokształcących Nr 1', '41-200 Sosnowiec, ul. Staszica 62', '(32) 266-18-34', 'lo1@sosnowiec.edu.pl', '1lo.htm', 'http://www.rozdzienski.pl', 3, 0, ''),
+(3, 'II LICEUM OGÓLNOKSZTAŁCĄCE im. Emilii Plater', '41-200 Sosnowiec, ul. Parkowa 1', '(32) 266-45-35', 'loplater@wp.pl', '2lo.htm', 'http://www.plater.edu.pl/', 1, 0, ''),
+(4, 'III LICEUM OGÓLNOKSZTAŁCĄCE im. Bolesława Prusa', '41-209 Sosnowiec, ul. Józefa Piłsudskiego 114', '(32) 299-89-42', 'lo3@sosnowiec.edu.pl', '3lo.htm', 'http://www.prus.sosnowiec.pl', 1, 0, ''),
+(5, 'Zespół Szkół Ogólnokształcących nr 15', '41-206 Sosnowiec, ul. Plac W. Zillingera 1', '(32) 291-37-84', 'lo4@sosnowiec.edu.pl', '4lo.htm', 'http://www.staszic.edu.pl', 1, 0, ''),
+(7, 'V Liceum Ogólnokształcące im. Roberta Schumana w Zespole Szkół Ogólnokształcących nr 7', '41-218 Sosnowiec, ul. Gwiezdna 2', '(32) 263-50-74', 'lo5@sosnowiec.edu.pl', '5lo.htm', 'http://www.lo5.sosnowiec.pl', 1, 0, ''),
+(8, 'Zespół Szkół Ogólnokształcących Nr 2  VI LICEUM OGÓLNOKSZTAŁCĄCE im. Janusza Korczaka', '41-214 Sosnowiec, ul. ul. Czeladzka 58', '(32) 291-57-10', 'lo6@korczak.edu.pl', '6lo.htm', 'http://www.korczak.edu.pl', 1, 0, ''),
+(9, 'VII Liceum Ogólnokształcące im. Krzysztofa Kamila Baczyńskiego w Zespole Szkół Ogólnokształcących nr', '41-219 Sosnowiec, ul. Kisielewskiego 4 b', '(32) 293-81-39', 'lo7@sosnowiec.edu.pl', '7lo.htm', 'http://www.zso14.edu.pl', 1, 0, ''),
+(10, 'VIII Liceum Ogólnokształcące im. C. K. Norwida w Zespole Szkół Technicznych i Licealnych', '41-200 Sosnowiec, ul. Kilińskiego 31', '(32) 266-07-34 ', 'zstl@sosnowiec.edu.pl', '8lo.htm', 'http://www.zstil.sosnowiec.pl', 1, 0, ''),
+(11, 'Technikum nr 1 Ekonomiczne', '41-200 Sosnowiec, ul. Grota Roweckiego 66', '(32) 291-39-25', 'zsz1@sosnowiec.edu.pl', 'kryteria.htm', 'http://www.zse.ckziu.com/', 2, 1, ''),
+(12, 'Zespół Szkół Elektroniczych i Informatycznych', '41-200 Sosnowiec, ul. Jagiellońska 13', '(32) 292-44-70', 'sekretariat@zse.edu.pl', 'zseii.htm', 'http://zse.edu.pl/', 1, 0, ''),
+(13, 'Technikum nr 7 Projektowania i Stylizacji Ubioru, Zasadnicza Szkołą Zawodowa nr 9 Rzemieślniczo - Artystyczna', '41-200 Sosnowiec, ul. Grota Roweckiego 64', '(32) 266-06-82', 'sekretariat@ckziu.pl', 'zspisu.htm', 'http://www.szkolamody.ckziu.com', 1, 1, ''),
+(14, 'Zespół Szkól Architektoniczno - Budowlanych', '41-219 Sosnowiec, ul. Braci Mieroszewskich 42', '(32) 269-95-50', 'zsz3@sosnowiec.edu.pl', 'zsab.htm', 'http://www.zsab.sosnowiec.pl', 1, 0, ''),
+(15, 'Technikum nr 3 Gastronomiczno - Hotelarskie, Zasadnicza Szkoła nr 4 Gastronomiczna', '41-200 Sosnowiec, ul. Wawel 1', '(32) 266-27-01', 'zsgh.sc@gazeta.pl', 'zsgh.htm', 'http://www.zsgh.ckziu.com', 1, 1, ''),
+(16, 'Centrum Kształcenia Zawodowego i Ustawicznego', '41-200 Sosnowiec, ul. Kilińskiego 25', '(32) 266-11-80', 'zsme@sosnowiec.edu.pl', 'zsme.htm', 'http://www.kilinski.edu.pl', 1, 0, ''),
+(18, 'ZESPÓŁ SZKÓŁ TECHNICZNYCH', '41-200 Sosnowiec, ul. Legionów 9', '(32) 293-52-52', 'zst@zst.sosnowiec.pl', 'zst.htm', 'http://www.zst.sosnowiec.pl', 1, 0, ''),
+(19, 'ZESPÓŁ SZKÓŁ USŁUGOWYCH', '41-218 Sosnowiec, ul. Hubala-Dobrzańskiego 131', '(32) 294-89-58', 'sekretariat@zsu.edu.pl', 'zsu.htm', 'http://www.zsu.edu.pl', 1, 0, '');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

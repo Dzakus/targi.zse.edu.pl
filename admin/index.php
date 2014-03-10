@@ -38,7 +38,6 @@ if (!Login::CheckLogged() || !isset($_GET["m"])) {
                 <table class="table table-striped table-bordered">
                   <thead>
                     <tr>
-                    LO1 ma hasło rozdzien
                       <th>Nazwa szkoly</th>
                       <th>Adres szkoly</th>
                       <th>Telefon</th>

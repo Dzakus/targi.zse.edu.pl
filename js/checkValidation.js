@@ -23,7 +23,8 @@ $(document).ready(function() {
                 validators: {
                     stringLength: {
                     	message:"Za krótka ta nazwa, min to 10 znaków",
-                    	min:10
+                    	min:10,
+                        max:255
                     },
                     notEmpty:{
                     	message: "Puste pole"
@@ -31,7 +32,7 @@ $(document).ready(function() {
                 }
             }, 
             adres: {
-                message: "Kiepska adres",
+                message: "Kiepski adres",
                 validators: {
                     stringLength: {
                     	message:"Za krótki ten adres, min to 10 znaków",
@@ -43,7 +44,7 @@ $(document).ready(function() {
                 }
             }, 
             telefon: {
-                message: "Kiepska numer telefonu",
+                message: "Kiepski numer telefonu",
                 validators: {
                     regexp:{
                         regexp: /(\(\d{2}\) *\d{3}-\d{2}-\d{2})|(\d{3}-\d{3}-\d{3})/,
@@ -55,7 +56,7 @@ $(document).ready(function() {
                 }
             }, 
             mail: {
-                message: "Kiepska mail",
+                message: "Nieprawidłowy adres e-mail",
                 validators: {
                     emailAddress: {
                     	message: "Nieprawidłowy adres e-mail, jeśli jesteś pewien, że jest prawidłowy skontaktuj się z administratorem"
@@ -66,7 +67,7 @@ $(document).ready(function() {
                 }
             }, 
             strona: {
-            	message: "Kiepska stronkia", 
+            	message: "Nieprawidłowy adres URL",
             	validators: {
             		uri: {
             			message: "Nieprawidłowy adres URL, powinien on tak wyglądać: http://www.loremipsum.com"

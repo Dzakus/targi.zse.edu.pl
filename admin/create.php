@@ -86,27 +86,27 @@ if(isset($_POST['nazwa']) && isset($_POST['adres']) && isset($_POST['telefon']) 
     }
 	else
 	{
-        echo "<br>Upload: " . $plik["name"] . "<br>";
-        echo "Type: " . $plik["type"] . "<br>";
-        echo "Size: " . ($plik["size"] / 1024) . " kB<br>";
-        echo "Stored in: " . $plik["tmp_name"];
 		if(!is_dir("../szkoly/"))
 		{
 			mkdir("../szkoly", 0777);
 		}
 		move_uploaded_file($plik['tmp_name'],'../szkoly/'.$plik['name']);
+
+        if(!is_dir("../prezentacje/"))
+        {
+            mkdir("../prezentacje", 0777);
+        }
+        move_uploaded_file($prezentacja['tmp_name'],'../prezentacje/'.$prezentacja['name']);
 		
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "INSERT INTO szkoly (nazwa, adres, telefon, mail, html, link) values(?, ?, ?, ?, ?, ?)";
         $q = $pdo->prepare($sql);
         $q->execute(array($nazwa,$adres,$telefon,$mail, $plik["name"], $strona));
         $pass = generateRandomString(6);
-        //die();
         $sql = 'INSERT INTO admins (mail, pass) values(?, ?)';
 	    $q = $pdo->prepare($sql);
-	    echo "Podaje hasło tylko dla celów tworzenia stron szkół, lepiej je zapisać: ".$pass;
+	    echo "Hasło: ".$pass;
 	    $q->execute(array($mail,sha1($pass))) or die(mysql_error());
-        //die();
         //header("Location: index.php?m=".$m);
     }
 }
