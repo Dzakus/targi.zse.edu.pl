@@ -51,13 +51,17 @@
 			require_once 'php/prezent.php';
             break;
 		}
-		
-		case 3:
+        case 3:
+    {
+        require_once 'php/linki.php';
+        break;
+    }
+		case 4:
 		{
 			require_once 'html/ser_inf.html';
             break;
 		}
-		
+
 		default:
 		{
 			require_once 'html/home.html';
@@ -76,7 +80,7 @@
 <script src="js/jquery.min.js" type="application/javascript"></script>
 <script type="application/javascript">
 	$( document ).scroll(function() {
-		if (window.pageYOffset>0) {
+		if (window.pageYOffset>200) {
 			$("div.strzalka").show("fast", "swing");
 		}else{
 			$("div.strzalka").hide("fast", "swing");

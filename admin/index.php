@@ -68,6 +68,7 @@ if (!Login::CheckLogged() || !isset($_GET["m"])) {
                             echo '<td width = 150px>
                             <a class="btn btn-success" href="edit.php?id='.$row['id'].'&m='.$mail.'">Edytuj</a>
                             <a class="btn btn-danger" href="delete.php?id='.$row['id'].'&m='.$mail.'">Usuń</a>
+                            <a class="btn btn-info" href="prezAdd.php?id='.$row['id'].'&m='.$mail.'">Dodaj prezentacje</a>
                             </td>';
                             echo '</tr>';
                    }

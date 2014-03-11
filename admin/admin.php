@@ -29,7 +29,7 @@
 	                <input style="width: 50%;" class="form-control" name="pass" type="password"  placeholder="Hasło">
 	          	</div>
 	          	<button type="submit" disabled="disabled" class="btn btn-success">Create</button>
-	          	<a class="btn" href="index.php">Back</a>
+	          	<a class="btn" href=<?php echo "index.php?m=".$_GET["m"]; ?>>Back</a>
 	        </form>
 	    </div>
                  

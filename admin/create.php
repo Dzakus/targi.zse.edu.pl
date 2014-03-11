@@ -59,7 +59,7 @@ if (!Login::CheckLogged() || !isset($_GET["m"])) {
 	          	</div>
 
 	          	<button type="submit" disabled="disabled" class="btn btn-success">Create</button>
-	          	<a class="btn" href="index.php">Back</a>
+	          	<a class="btn" href=<?php echo "index.php?m=".$_GET["m"]; ?>>Back</a>
 	        </form>
 	    </div>
                  
@@ -75,11 +75,11 @@ if (!Login::CheckLogged() || !isset($_GET["m"])) {
 require_once "../php/dbConn.php";
 if(isset($_POST['nazwa']) && isset($_POST['adres']) && isset($_POST['telefon']) && isset($_POST['strona']) && isset($_POST['mail'])) {
 	
-	$nazwa=strip_tags(htmlspecialchars(mysql_real_escape_string($_POST['nazwa'])));
-	$adres=strip_tags(htmlspecialchars(mysql_real_escape_string($_POST['adres'])));
-	$telefon=strip_tags(htmlspecialchars(mysql_real_escape_string($_POST['telefon'])));
-	$strona=strip_tags(htmlspecialchars(mysql_real_escape_string($_POST['strona'])));
-	$mail=strip_tags(htmlspecialchars(mysql_real_escape_string($_POST['mail'])));
+	$nazwa=strip_tags(htmlspecialchars($_POST['nazwa']));
+	$adres=strip_tags(htmlspecialchars($_POST['adres']));
+	$telefon=strip_tags(htmlspecialchars($_POST['telefon']));
+	$strona=strip_tags(htmlspecialchars($_POST['strona']));
+	$mail=strip_tags(htmlspecialchars($_POST['mail']));
 	$plik = $_FILES["file"];
     if ($plik["error"] > 0)
     {

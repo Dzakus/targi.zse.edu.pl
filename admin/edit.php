@@ -69,7 +69,7 @@ if (!Login::CheckLogged() || !isset($_GET["m"])) {
 	          	</div>
 
 	          	<button type="submit" disabled="disabled" class="btn btn-success">Edytuj</button>
-	          	<a class="btn" href=<?php echo '"index.php?m='.$_GET["m"].'"'; ?>>Back</a>
+	          	<a class="btn" href=<?php echo "index.php?m=".$_GET["m"]; ?>>Back</a>
 	        </form>
 	    </div>
                  

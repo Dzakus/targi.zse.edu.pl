@@ -55,7 +55,7 @@ if (!Login::CheckLogged() || !isset($_GET["m"])) {
                     <input style="width: 50%;" class="form-control" name="pass" type="password"  placeholder="Hasło">
                 </div>
                 <button type="submit" class="btn btn-danger">Tak</button>
-                <a class="btn" href="index.php">Nie</a>
+                <a class="btn" href=<?php echo "index.php?m=".$_GET["m"]; ?>>Nie</a>
             </div>
         </form>
     </div>

@@ -102,3 +102,7 @@
   margin-right: 10px;
 }
 
+.punkt:first-child{
+    padding-top:10px;
+
+}

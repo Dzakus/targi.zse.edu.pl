@@ -6,10 +6,10 @@
     foreach($centra->fetchAll() as $centr)
     {
         $szkoly_centr=$pdo->query("SELECT * FROM szkoly WHERE ".$centr["id"]."=id_centrum");
-        if($centr["id"]!=0) echo '<li>Centrum: '.$centr["centrum"];
+        if($centr["id"]!=0) echo '<li style="margin-left:20px;">Centrum: '.$centr["centrum"];
         foreach($szkoly_centr->fetchAll() as $sql)
         {
-            echo '<ul><a href = "?page=1&id='.$sql["id"].'&link='.sha1($sql["html"]).'">'.$sql["nazwa"].'</a></ul>';
+            echo '<ul class="punkt"><a href = "?page=1&id='.$sql["id"].'&link='.sha1($sql["html"]).'">'.$sql["nazwa"].'</a></ul>';
         }
         if($centr["id"]!=0) echo '</li>';
     }

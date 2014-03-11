@@ -59,7 +59,7 @@ if (!Login::CheckLogged() || !isset($_GET["m"])) {
                       <p class="alert alert-danger">Czy jesteś pewien?</p>
                       <div class="form-actions">
                           <button type="submit" class="btn btn-danger">Tak</button>
-                          <a class="btn" href="index.php">Nie</a>
+                          <a class="btn" href=<?php echo "index.php?m=".$_GET["m"]; ?>>Nie</a>
                         </div>
                     </form>
                 </div>
