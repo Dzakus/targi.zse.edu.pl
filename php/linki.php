@@ -2,7 +2,7 @@
 require_once "php/dbConn.php";
 $centra=$pdo->query("SELECT * FROM centra");
 echo '<div class = "ramka span9">
-        <h3>Wybór szkoły</h3>';
+        <h3>Strony WWW</h3>';
 foreach($centra->fetchAll() as $centr)
 {
     $szkoly_centr=$pdo->query("SELECT * FROM szkoly WHERE ".$centr["id"]."=id_centrum");
@@ -12,7 +12,7 @@ foreach($centra->fetchAll() as $centr)
         $prez=$pdo->query("SELECT * FROM prezentacje WHERE id = ".$sql["prez_id"]);
         $prez = $prez->fetch();
         $href = $prez["link"];
-        echo '<ul class="punkt"><a href="'.$href.'">'.$sql["nazwa"].'</a></ul>';
+        echo '<ul class="punkt"><a href="'.$href.'" target="_blank">'.$sql["nazwa"].'</a></ul>';
     }
     if($centr["id"]!=0) echo '</li>';
 }
