@@ -12,7 +12,7 @@
             $prez=$pdo->query("SELECT * FROM prezentacje WHERE id = ".$sql["prez_id"]);
             $prez = $prez->fetch();
             
-            $href = "prezentacje/".$prez["ftp"];
+            $href = $prez["ftp"];
             echo '<ul class="punkt"><a href="'.$href.'">'.$sql["nazwa"].'</a></ul>';
         }
         if($centr["id"]!=0) echo '</li>';
